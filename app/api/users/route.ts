@@ -19,14 +19,27 @@ export async function GET(request: Request) {
       {
         data: users,
       },
-      { status: 200, statusText: "OK" }
+      {
+        status: 200,
+        statusText: "OK",
+        headers: {
+          "Access-Control-Allow-Origin": "*", // Or your specific domain
+          "Content-Type": "application/json",
+        },
+      }
     );
   } catch (error: unknown) {
     return Response.json(
       {
         message: (error as Error).message,
       },
-      { status: 500 }
+      {
+        status: 500,
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+          "Content-Type": "application/json",
+        },
+      }
     );
   }
 }
