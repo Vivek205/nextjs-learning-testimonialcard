@@ -14,5 +14,3 @@ const nextConfig: NextConfig = {
 };
 
 export default nextConfig;
-
-// new URL("https://i.pravatar.cc/**")

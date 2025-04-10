@@ -1,8 +1,14 @@
 import TestimonialCard from "~/app/components/TestimonialCard";
 import { getAllUser } from "./data/data";
+import { User } from "./data/types";
 
 export default async function Home() {
-  const users = await getAllUser();
+  let users: User[] = [];
+  try {
+    users = await getAllUser();
+  } catch (error) {
+    console.log("Get Users error", error);
+  }
 
   return (
     <div className="w-full  flex justify-center">
