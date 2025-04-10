@@ -4,9 +4,9 @@ export async function GET() {
   try {
     const users = await getAllUser();
     return Response.json(
-      JSON.stringify({
+      {
         data: users,
-      }),
+      },
       {
         status: 200,
         statusText: "OK",
