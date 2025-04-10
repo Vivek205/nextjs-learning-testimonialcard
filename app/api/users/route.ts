@@ -1,6 +1,6 @@
 import { getAllUser } from "~/app/data/data";
 
-export async function GET(request: Request, response: Response) {
+export async function GET() {
   try {
     const users = await getAllUser();
     return Response.json(
