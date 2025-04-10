@@ -9,10 +9,10 @@ export async function GET() {
       },
       { status: 200, statusText: "OK" }
     );
-  } catch (error: any) {
+  } catch (error: unknown) {
     return Response.json(
       {
-        message: error.message,
+        message: (error as Error).message,
       },
       { status: 500 }
     );
