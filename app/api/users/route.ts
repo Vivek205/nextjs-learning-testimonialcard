@@ -1,18 +1,6 @@
 import { getAllUser } from "~/app/data/data";
 
-export async function GET(request: Request) {
-  // Handle preflight OPTIONS request
-  if (request.method === "OPTIONS") {
-    return new Response(null, {
-      status: 204,
-      headers: {
-        "Access-Control-Allow-Origin": "*", // Replace * with your app domain if needed
-        "Access-Control-Allow-Methods": "GET,OPTIONS",
-        "Access-Control-Allow-Headers": "Content-Type",
-      },
-    });
-  }
-
+export async function GET() {
   try {
     const users = await getAllUser();
     return Response.json(
@@ -42,4 +30,16 @@ export async function GET(request: Request) {
       }
     );
   }
+}
+
+// ✅ Handle preflight OPTIONS request
+export async function OPTIONS() {
+  return new Response(null, {
+    status: 204,
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "GET,OPTIONS",
+      "Access-Control-Allow-Headers": "Content-Type",
+    },
+  });
 }
