@@ -1,12 +1,15 @@
 import { getAllTodoForUser } from "~/app/data/todo-items";
-import { corsHeaders } from "../../constants";
+import { corsHeaders } from "../constants";
 
-export async function GET(
-  request: Request,
-  { params }: { params: Promise<{ slug: string }> }
-) {
+export async function GET(request: Request) {
   try {
-    const { slug: userId } = await params;
+    const url = new URL(request.url);
+    const userId = url.searchParams.get("userId");
+
+    if (!userId) {
+      throw new Error("Invalid UserId");
+    }
+
     const todoItems = await getAllTodoForUser(userId);
     return Response.json(
       {
