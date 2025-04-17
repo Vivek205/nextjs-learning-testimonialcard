@@ -1,6 +1,6 @@
 import TestimonialCard from "~/app/components/TestimonialCard";
-import { getAllUser } from "./data/data";
-import { User } from "./data/types";
+import { getAllUser } from "./data/users";
+import { User } from "./data/users/types";
 
 export default async function Home() {
   let users: User[] = [];

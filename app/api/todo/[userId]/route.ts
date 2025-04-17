@@ -1,12 +1,16 @@
-import { getAllUser } from "~/app/data/users";
-import { corsHeaders } from "../constants";
+import { getAllTodoForUser } from "~/app/data/todo-items";
+import { corsHeaders } from "../../constants";
 
-export async function GET() {
+export async function GET(
+  request: Request,
+  { params }: { params: Promise<{ slug: string }> }
+) {
   try {
-    const users = await getAllUser();
+    const { slug: userId } = await params;
+    const todoItems = await getAllTodoForUser(userId);
     return Response.json(
       {
-        data: users,
+        data: todoItems,
       },
       {
         status: 200,
